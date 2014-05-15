@@ -1,0 +1,36 @@
+/* 
+#5400FF BLUE
+#00E7E8 CYAN
+#80FF00 GREEN
+#E8980A YELLOW
+#FF0035 RED
+*/
+* {
+	font-family: 'Arimo';
+}
+body {
+	margin: 0;
+	position: relative;
+}
+body .menu {
+	width: 35%;
+	height: 800px;
+	background: #FF0035;
+	position: absolute; 
+	right: 0;
+}
+body .playscreen {
+	
+}
+body .playscreen .map {
+	float: left;
+	margin-top: 50px;
+	margin-left: 200px;
+	width: 750px;
+	height: 750px;
+}
+body .playscreen .map .cell {
+	width: 50px;
+	height: 50px;
+	float: left;
+}

@@ -1,12 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
 	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/controllers.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 </head>
 <body>
-	<button ng-click="count = count + 1" ng-init="count=0">
-	  Increment
-	</button>
-	count: {{count}}
+	<section class="menu">
+		<div class="status">
+
+		</div>
+		<div class="controls">
+			
+		</div>
+	</section>
+	<section class="playscreen" ng-controller="playscreenController">
+		<div class="map">
+			<div class="cell" ng-repeat="cell in cells" ng-style="cell.bgColor"></div>
+		</div>
+	</section>
 </body>
 </html>

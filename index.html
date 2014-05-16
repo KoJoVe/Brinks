@@ -7,17 +7,11 @@
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 </head>
 <body>
-	<section class="menu">
-		<div class="status">
-
-		</div>
-		<div class="controls">
-			
-		</div>
-	</section>
 	<section class="playscreen" ng-controller="playscreenController">
 		<div class="map">
-			<div class="cell" ng-repeat="cell in cells" ng-style="cell.bgColor"></div>
+			<div class="cellrow" ng-repeat="cellrow in cells">
+				<div class="cell" ng-repeat="cell in cellrow" ng-style="cell.bgColor" ng-click="addColector($parent.$index,$index)" ng-class="{colector: cell.colector}"></div>
+			</div>
 		</div>
 	</section>
 </body>

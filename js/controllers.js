@@ -21,7 +21,23 @@ angular.module('myApp',[])
 
 .controller('infoscreenController', ['$scope', function($scope) {
 
+	$scope.cells = new Array();
 
+	for(var i=0;i<3;i++) {
+		
+		var cellrow = new Array();
+		$scope.cells.push(cellrow);
+		
+		for(var k=0;k<3;k++) {
+			
+			var classes = [];
+			var color = '255, 0, 53';
+			var backOp = Math.floor((i+k)%2)*0.8 + 0.5;
+			var bgColor = {"background-color": "rgba(" + color + "," + backOp + ")"};
+			$scope.cells[i].push({"classes": classes, "bgColor": bgColor, "colector": false, "price": backOp*500})
+		
+		}
+	}
 
 }])
 

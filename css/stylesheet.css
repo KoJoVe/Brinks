@@ -19,16 +19,41 @@ body .menu .status p {
 	margin-left: 120px;
 	margin-top: 150px;
 }
+body .playscreen {
+	float: left;
+	width: 50%;
+	margin: auto;
+}
+body .infoscreen {
+	float: left;
+	width: 25%;
+	height: 700px;
+}
 body .playscreen .map {
 	margin: auto;
 	margin-top: 30px;
 	overflow: hidden;
+	width: 500px;
 }
-body .playscreen .cellrow {
+body .playscreen .map .cellrow {
 	margin: auto;
 	overflow: hidden;
 	text-align: center;
 	font-size: 0;
+}
+body .infoscreen .piecePreview {
+	margin-top: 50px;
+}
+body .infoscreen .piecePreview .cellrow {
+	margin: auto;
+	overflow: hidden;
+	text-align: center;
+	font-size: 0;
+}
+body .infoscreen .piecePreview .cellrow .cell {
+	width: 50px;
+	height: 50px;
+	display: inline-block;
 }
 body .playscreen .map .cellrow .cell {
 	width: 50px;
@@ -42,13 +67,27 @@ body .playscreen .map .cellrow .cell p {
 	top: -5px;
 }
 body .playscreen .map .cellrow .colector {
-	background: #5400FF !important;
+	background: #80FF00 !important;
 }
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 	
 	body .playscreen .map .cellrow .cell {
 		width: 30px;
 		height: 30px;
+	}
+	body .playscreen {
+		float: none;
+		width: 100%;
+		margin: auto;
+	}
+	body .infoscreen {
+		float: none;
+		width: 100%;
+		height: 200px;
+		background: #E8980A;
+	}
+	body .playscreen .map {
+		width: 100%;
 	}
 
 }

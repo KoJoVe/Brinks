@@ -55,6 +55,13 @@ body .infoscreen .piecePreview .cellrow .cell {
 	width: 50px;
 	height: 50px;
 	display: inline-block;
+	background: rgba(0,0,0,0.7);
+}
+body .infoscreen .piecePreview .cellrow .cell.dark {
+	background: rgba(0,0,0,0.5);
+}
+body .infoscreen .piecePreview .cellrow .colector {
+	background: #80FF00 !important;
 }
 body .playscreen .map .cellrow .cell {
 	width: 50px;

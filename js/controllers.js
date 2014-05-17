@@ -19,25 +19,9 @@ angular.module('myApp',[])
 
 }])
 
-.controller('infoscreenController', ['$scope', function($scope) {
+.controller('infoscreenController', ['$scope', 'Pieces', function($scope, piecesService) {
 
-	$scope.cells = new Array();
-
-	for(var i=0;i<3;i++) {
-		
-		var cellrow = new Array();
-		$scope.cells.push(cellrow);
-		
-		for(var k=0;k<3;k++) {
-			
-			var classes = [];
-			var color = '255, 0, 53';
-			var backOp = Math.floor((i+k)%2)*0.8 + 0.5;
-			var bgColor = {"background-color": "rgba(" + color + "," + backOp + ")"};
-			$scope.cells[i].push({"classes": classes, "bgColor": bgColor, "colector": false, "price": backOp*500})
-		
-		}
-	}
+	$scope.cells = piecesService.getPiece();
 
 }])
 
@@ -141,8 +125,6 @@ angular.module('myApp',[])
 
 	var selectedPiece = new Array();
 
-	selectedPiece = [[0,0,0],[0,0,0],[0,0,0]]
-
 	var pieces = [
 					
 					[
@@ -173,24 +155,169 @@ angular.module('myApp',[])
 						[0,0,1],
 						[1,1,1],
 						[0,0,0]
+					],
+
+					[
+						[1,1,0],
+						[1,1,0],
+						[0,0,0]
+					],
+
+					[
+						[0,1,0],
+						[1,1,0],
+						[1,0,0]
+					],
+
+					[
+						[1,0,0],
+						[1,1,1],
+						[0,0,0]
+					],
+
+					[
+						[0,1,0],
+						[0,1,1],
+						[0,0,1]
+					],
+
+					[
+						[0,1,0],
+						[0,1,1],
+						[0,0,1]
+					],
+
+					[
+						[0,0,0],
+						[1,1,1],
+						[1,0,1]
+					],
+
+					[
+						[0,0,0],
+						[0,1,1],
+						[0,0,1]
+					],
+
+					[
+						[0,0,0],
+						[1,1,0],
+						[1,0,0]
+					],
+
+					[
+						[0,1,0],
+						[0,1,0],
+						[0,0,0]
 					]
 				];
+
+	function copyPiece(piece) {
+
+		var copiedPiece = new Array();
+
+		for(var i=0;i<piece.length;i++) {
+
+			copiedPiece[i] = new Array();
+
+			for (var k=0;k<piece.length;k++) {
+
+				copiedPiece[i][k] = piece[i][k];	
+
+			}
+
+		}
+
+		return copiedPiece;
+
+	}
+
+	function rotate90Degrees(piece,n) {
+
+		for(var j=0;j<n;j++) {
+
+			for(var i=0;i<piece.length;i++) {
+
+				for (var k=i+1;k<piece.length;k++) {
+
+					var tmp = piece[i][k]
+					piece[i][k] = piece[k][i]
+					piece[k][i] = tmp;	
+
+				}
+
+			}
+
+			for(var i=0;i<(piece.length-1)/2;i++) {
+
+				for (var k=0;k<piece.length;k++) {
+
+					var tmp = piece[k][i];
+					piece[k][i] = piece[k][piece.length-1-i];
+					piece[k][piece.length-1-i] = tmp;
+
+				}
+
+			}
+
+		}
+
+		return piece;
+
+	}			
+
+	function rotatePiece(piece) {
+
+		var x = Math.floor((Math.random()*4));
+
+		var newpiece = new Array();
+
+		for(var i=0;i<piece.length;i++) {
+
+			newpiece[i] = new Array();
+
+			for (var k=0;k<piece.length;k++) {
+
+				newpiece[i][k] = piece[i][k];	
+
+			}
+
+		}
+
+		if (x==0) {
+			return newpiece;
+		}
+		if (x==1) {
+
+			return rotate90Degrees(newpiece,1);
+		}
+		if (x==2) {
+			return rotate90Degrees(newpiece,2);
+		}
+		if (x==3) {
+			return rotate90Degrees(newpiece,3);
+		}
+
+	}			
 
 
 	function randomizePiece() {
 
 		x = Math.floor((Math.random() * pieces.length));
 		
+		var piece = rotatePiece(pieces[x]);
+
 		for(var i=0;i<piece.length;i++) {
+
+			selectedPiece[i] = new Array();
 
 			for (var k=0;k<piece.length;k++) {
 
-				selectedPiece[i][k] = pieces[x][i][k];	
+				selectedPiece[i][k] = piece[i][k];	
 
 			}
 
 		}
-
 
 	}			
 

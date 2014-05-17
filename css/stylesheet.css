@@ -42,7 +42,8 @@ body .playscreen .map .cellrow {
 	font-size: 0;
 }
 body .infoscreen .piecePreview {
-	margin-top: 50px;
+	position: relative;
+	top: 50px;
 }
 body .infoscreen .piecePreview .cellrow {
 	margin: auto;
@@ -84,7 +85,6 @@ body .playscreen .map .cellrow .colector {
 		float: none;
 		width: 100%;
 		height: 200px;
-		background: #E8980A;
 	}
 	body .playscreen .map {
 		width: 100%;

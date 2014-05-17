@@ -3,10 +3,18 @@
 <head>
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/controllers.js"></script>
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<link href='http://fonts.googleapis.com/css?family=Arimo:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 </head>
 <body>
+	<section class="infoscreen" ng-controller="infoscreenController">
+		<div class="piecePreview">
+			<div class="cellrow" ng-repeat="cellrow in cells">
+				<div class="cell" ng-repeat="cell in cellrow"></div>
+			</div>
+		</div>
+	</section>
 	<section class="playscreen" ng-controller="playscreenController">
 		<div class="map">
 			<div class="cellrow" ng-repeat="cellrow in cells">

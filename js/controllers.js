@@ -1,14 +1,27 @@
 angular.module('myApp',[])
 
-.controller('playscreenController', ['$scope', 'Cell',  function($scope, cellService) {
+.controller('playscreenController', ['$scope', 'Cell', 'Pieces',  function($scope, cellService, piecesService) {
 	
 	$scope.addColector = function(index1,index2) {
 
-		cellService.addColector(index1,index2);
+		if(cellService.addColector(index1,index2,piece)) {
+		
+			piecesService.randomizePiece();
+
+		}
+
 
 	}
 
-	$scope.cells = cellService.generateCells(7,7);
+	$scope.cells = cellService.generateCells(10,10);
+	piece = piecesService.getPiece();
+	piecesService.randomizePiece();
+
+}])
+
+.controller('infoscreenController', ['$scope', function($scope) {
+
+
 
 }])
 
@@ -40,12 +53,137 @@ angular.module('myApp',[])
 
 	}
 
-	function addColector(index1,index2) {
+	function addColector(index1,index2,piece) {
 
-		cells[index1][index2].colector = true;
+		
+		var middle = (piece.length-1)/2;
+
+		if (checkPiece(index1,index2,piece)) {
+			for(var i=0;i<piece.length;i++) {
+
+				for (var k=0;k<piece.length;k++) {
+
+					if (piece[i][k]==1) {
+
+						cells[index1-middle+i][index2-middle+k].colector = true;
+
+					}
+
+				}
+
+			}
+			return true;
+		}
+
+		return false;
+
+	}
+
+	function checkPiece(index1,index2,piece) {
+
+		var middle = (piece.length-1)/2;
+
+		for(var i=0;i<piece.length;i++) {
+
+			for (var k=0;k<piece.length;k++) {
+
+				if(piece[i][k]==1) {
+
+					if ((index1-middle+i)<0) {
+						return false;
+					}
+					if ((index1-middle+i)>cells.length-1) {
+						return false;
+					}
+					if ((index2-middle+k)<0) {
+						return false;
+					}
+					if ((index2-middle+k)>cells[0].length-1) {
+						return false;
+					}
+					if (cells[index1-middle+i][index2-middle+k].colector==true) {
+						return false;
+					}
+
+				}
+
+			}
+
+		}
+
+		return true;
 
 	}
 
 	return {generateCells: generateCells, addColector: addColector};
+
+})
+
+.factory('Pieces', function() {
+
+	var i = 0;
+
+	var selectedPiece = new Array();
+
+	selectedPiece = [[0,0,0],[0,0,0],[0,0,0]]
+
+	var pieces = [
+					
+					[
+						[0,0,0],
+						[0,1,0],
+						[0,0,0]					
+					],
+
+					[
+						[0,1,0],
+						[1,1,1],
+						[0,1,0]
+					],
+					
+					[
+						[0,0,0],
+						[1,1,1],
+						[0,0,0]
+					],
+
+					[
+						[1,0,0],
+						[1,1,0],
+						[1,0,0]
+					],
+
+					[
+						[0,0,1],
+						[1,1,1],
+						[0,0,0]
+					]
+				];
+
+
+	function randomizePiece() {
+
+		x = Math.floor((Math.random() * pieces.length));
+		
+		for(var i=0;i<piece.length;i++) {
+
+			for (var k=0;k<piece.length;k++) {
+
+				selectedPiece[i][k] = pieces[x][i][k];	
+
+			}
+
+		}
+
+
+	}			
+
+	function getPiece() {
+
+		return selectedPiece;
+
+	}
+
+	return {randomizePiece: randomizePiece, getPiece: getPiece};
 
 });

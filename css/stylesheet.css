@@ -31,8 +31,8 @@ body .playscreen .cellrow {
 	font-size: 0;
 }
 body .playscreen .map .cellrow .cell {
-	width: 40px;
-	height: 40px;
+	width: 50px;
+	height: 50px;
 	display: inline-block;
 	cursor: pointer;
 }
@@ -42,5 +42,13 @@ body .playscreen .map .cellrow .cell p {
 	top: -5px;
 }
 body .playscreen .map .cellrow .colector {
-	background: url(../images/colector.png);
+	background: #5400FF !important;
+}
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+	
+	body .playscreen .map .cellrow .cell {
+		width: 30px;
+		height: 30px;
+	}
+
 }
